@@ -1,0 +1,20 @@
+{
+  "name": "original-cheeze pizza",
+  "ingredients": {
+    "flour": 2,
+    "tomatoes": 5,
+    "cheese": 2
+  },
+  "preperation": {
+    "dough": {"prepare":  "pizza-dough recipe"},
+    "sauce": {"prepare":  "tomato-sauce recipe"},
+    "cheese": {"action":  "grate"}
+  },
+  "assembly":[
+    {"operation":  "rollOut", "argument": "dough"},
+    {"operation":  "spread", "argument": "sauce"},
+    {"operation":  "spread", "argument": "cheese"},
+    {"bake":  "pizza", "argument": ""},
+    {"operation":  "bake", "argument": "10 min"}
+  ]
+}

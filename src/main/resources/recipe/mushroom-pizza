@@ -1,0 +1,22 @@
+{
+  "name": "mushroom pizza",
+  "ingredients": {
+    "flour": "2",
+    "tomatoes": "4",
+    "cheese": "1",
+    "champignon": "2",
+    "oysterMushroom": "2"
+  },
+  "preparation": {
+    "dough": {"prepare":  "pizza-dough recipe"},
+    "sauce": {"prepare":  "tomato-sauce recipe"},
+    "cheese": {"action":  "grate"},
+    "mushrooms": {"action":  "slice"}
+  },
+  "assembly": [
+    {"operation": "rollOut", "argument": "dough"},
+    {"operation": "spread", "argument": "sauce"},
+    {"operation":  "spread", "argument":  "mushrooms"},
+    {"operation":  "bake", "argument":  "12 min"}
+  ]
+}

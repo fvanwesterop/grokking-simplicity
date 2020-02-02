@@ -1,0 +1,22 @@
+{
+  "name": "pepperoni pizza",
+  "ingredients": {
+    "flour": 2,
+    "tomatoes": 5,
+    "cheese": 1,
+    "pepperoni": 1
+  },
+  "preperation": {
+    "dough": {"prepare": "pizza-dough recipe"},
+    "sauce": {"prepare": "tomato-sauce recipe"},
+    "cheese": {"action": "grate"},
+    "pepperoni": {"action": "slice"}
+  },
+  "assembly": [
+    {"operation": "rollOut", "argument": "dough"},
+    {"operation": "spread", "argument": "sauce"},
+    {"operation": "spread", "argument": "cheese"},
+    {"operation": "spread", "argument": "pepperoni"},
+    {"operation": "bake", "argument": "10 min"}
+  ]
+}
