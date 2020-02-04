@@ -1,11 +1,11 @@
 {
   "name": "mushroom pizza",
   "ingredients": {
-    "flour": "2",
-    "tomatoes": "4",
-    "cheese": "1",
-    "champignon": "2",
-    "oysterMushroom": "2"
+    "flour": 2,
+    "tomatoes": 4,
+    "cheese": 1,
+    "champignon": 2,
+    "oysterMushroom": 2
   },
   "preparation": {
     "dough": {"prepare":  "pizza-dough recipe"},
