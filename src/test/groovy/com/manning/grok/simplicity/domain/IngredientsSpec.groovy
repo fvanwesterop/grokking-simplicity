@@ -3,10 +3,10 @@ package com.manning.grok.simplicity.domain
 
 import spock.lang.Specification
 
-import static IngredientsList.ingredients
+import static Ingredients.ingredients
 
 
-class IngredientsListSpec extends Specification {
+class IngredientsSpec extends Specification {
 
     def "checkout the + operator"() {
 
