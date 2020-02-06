@@ -21,11 +21,9 @@ class IngredientsList {
     }
 
     IngredientsList plus(IngredientsList otherList) {
-        Map<String, Integer> result = new HashMap<>(content)
-        otherList.content.each { String item, Integer qty ->
-            result.put(item, content.getOrDefault(item, 0) + qty)
-        }
-        new IngredientsList(result)
+        new IngredientsList(otherList.content.inject(new HashMap<>(content)) { Map<String, Integer> result, String item, Integer qty  ->
+            result << [(item): content.getOrDefault(item, 0) + qty]
+        })
     }
 
     @Override
