@@ -16,8 +16,20 @@ class Ingredients {
     final Map<String, Integer> ingredientQties
 
     Ingredients plus(Ingredients other) {
-        new Ingredients(other.ingredientQties.inject([:] + ingredientQties) { Map summedQties, Map.Entry<String, Integer> ingredientQty ->
-            summedQties << [(ingredientQty.key): (ingredientQties.getOrDefault(ingredientQty.key, 0) + ingredientQty.value)]
+        new Ingredients(other.ingredientQties.inject([:] + this.getIngredientQties()) { Map ourQties, String ingredientName, Integer theirIngredientQty ->
+            ourQties << [(ingredientName): (ingredientQties.getOrDefault(ingredientName, 0) + theirIngredientQty)]
+        })
+    }
+
+    Ingredients minus(Ingredients other) {
+        new Ingredients(other.getIngredientQties().inject([:] + this.getIngredientQties()) { Map ourQties, String ingredientName, Integer theirIngredientQty ->
+            def newIngredientQty = ourQties.getOrDefault(ingredientName, 0) - theirIngredientQty
+            if (newIngredientQty > 0) {
+                ourQties << [(ingredientName): newIngredientQty]
+            } else {
+                ourQties.remove(ingredientName)
+            }
+            return ourQties
         })
     }
 

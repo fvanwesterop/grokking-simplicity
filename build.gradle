@@ -1,6 +1,7 @@
 plugins {
     id 'groovy'
     id 'application'
+    id 'war'
 }
 
 repositories {
@@ -12,6 +13,7 @@ repositories {
 }
 
 dependencies {
+    implementation 'javax:javaee-api:7.0'
     implementation group: 'org.codehaus.groovy', name: 'groovy', version: '2.5.8'
     implementation group: 'org.codehaus.groovy', name: 'groovy-json', version: '2.5.8'
     implementation group: 'org.slf4j', name: 'slf4j-api', version: '1.7.30'

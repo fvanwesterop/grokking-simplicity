@@ -1,6 +1,9 @@
-package com.manning.grok.simplicity
+package com.manning.grok.simplicity.cli
 
-class App {
+import com.manning.grok.simplicity.Action
+import com.manning.grok.simplicity.Function
+
+class Application {
 
     static void main(String[] args) {
 

@@ -1,0 +1,62 @@
+#!/usr/bin/env sh
+
+# -------------------------------
+# Install script for TomEE 7 or 8
+# -------------------------------
+
+# set wanted version and profile below:
+
+# valid versions: 7.0.7, 7.1.2, 8.0.1
+version='7.1.2'
+
+# valid profiles: webprofile, microprofile, plus, plume
+profile='microprofile'
+
+# -------------------------------
+
+
+
+basePath=$(realpath $(dirname "$(realpath $0)")/..)
+file="apache-tomee-${version}-${profile}.tar.gz"
+installName="tomee-${version}"
+remoteLocation="http://ftp.nluug.nl/internet/apache/tomee/tomee-${version}/"
+localCache="${basePath}/.archives"
+
+# check if the requested version of TOMEE is not installed already
+if test -d "${basePath}/${installName}"; then
+	echo "Already installed: '${basePath}/${installName}'"
+	echo "----------------------------------------------------------------------"
+	exit 0
+fi
+
+# check if we need to download it or can use a cached version
+if test -f "${localCache}/${file}"; then
+    echo "\nUsing cached distribution: '${localCache}/${file}'"
+    echo "----------------------------------------------------------------------"
+else
+    echo "\nDownloading distribution: '${remoteLocation}/${file}'"
+    echo "----------------------------------------------------------------------"
+    mkdir -p ${localCache} && \
+    wget -O ${localCache}/${file} ${remoteLocation}/${file}
+fi
+
+# install distribution (from cache)
+echo "\nInstalling distribution '${file}' to '${basePath}/${installName}'"
+echo "----------------------------------------------------------------------"
+cd ${basePath}
+rm -rf tmp && mkdir tmp && \
+cp ${localCache}/${file} tmp/ && \
+cd tmp && tar zxf ${file} && rm ${file} && cd .. && \
+mv tmp/* ./${installName}
+rm -rf tmp
+
+# post process installation
+echo "\nPost processing installation"
+echo "----------------------------"
+cd "${basePath}/${installName}/bin" && rm *.bat && rm *.exe && rm *.tar.gz
+cp "${basePath}/etc/setenv-tomee-$(echo ${version} | cut -c1-1).sh" "${basePath}/${installName}/bin/setenv.sh"
+
+# sanity check installation
+echo "\nPerforming sanity check"
+echo "-----------------------"
+exec "${basePath}/${installName}/bin/configtest.sh"
