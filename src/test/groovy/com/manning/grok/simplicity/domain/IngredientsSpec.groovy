@@ -18,4 +18,20 @@ class IngredientsSpec extends Specification {
         expect:
         ingredients(shoppingListOne) + ingredients(shoppingListTwo) == ingredients(completeList)
     }
+
+    def 'checkout the - operator'() {
+
+        def needed = '{"cheese":2, "flour":3, "olives":4, "tomatoes":4}'
+        def supplies = '{"pepperoni":1, "cheese":4, "olives":4, "tomatoes":2}'
+
+
+        def goBuy = '{"flour":3, "tomatoes":2}'
+
+        expect:
+        ingredients(needed) - ingredients(supplies) == ingredients(goBuy)
+    }
+
+    def 'checkout the / operator'() {
+
+    }
 }
